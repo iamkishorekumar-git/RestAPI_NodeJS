@@ -6,5 +6,6 @@ App hosted in heroku - https://kk-test-restapi.herokuapp.com/
 
 ### Enabled Automatic Deployment
 
-### Date
- Oct 29 - Created server file , added very basic response
+### Done Checklist
+
+ Created server file and added route for order , product
