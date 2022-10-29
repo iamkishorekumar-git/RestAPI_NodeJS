@@ -1,0 +1,19 @@
+{
+  "name": "restapi_nodejs",
+  "version": "1.0.0",
+  "description": "creating rest api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@kk:iamkishorekumar-git/RestAPI_NodeJS.git"
+  },
+  "author": "Kishore Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
