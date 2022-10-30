@@ -15,7 +15,7 @@ const uri = "mongodb+srv://rest-api-shop:rest-api-shop@rest-api.6evwfqc.mongodb.
 // });
 
 mongoose
-  .connect(uri, {
+  .connect(process.env.URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true})
   .then(() => console.log("Database connected!"))
