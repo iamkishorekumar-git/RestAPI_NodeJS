@@ -6,7 +6,7 @@ const morgan = require("morgan")
 const mongoose = require("mongoose")
 //const bodyParser = require("body-parser")
 
-//const uri = "mongodb+srv://rest-api-shop:rest-api-shop@rest-api.6evwfqc.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://rest-api-shop:rest-api-shop@rest-api.6evwfqc.mongodb.net/?retryWrites=true&w=majority";
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 // client.connect(err => {
 //   const collection = client.db("test").collection("devices");
@@ -15,7 +15,7 @@ const mongoose = require("mongoose")
 // });
 
 mongoose
-  .connect(process.env.URI, {
+  .connect(process.env.URI || uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true})
   .then(() => console.log("Database connected!"))
