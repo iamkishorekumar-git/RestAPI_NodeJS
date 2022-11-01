@@ -8,7 +8,18 @@ router.get("/",(req,res,next)=>
 {
   Product.find().exec().then((docs)=>
 {
-  res.status(200).json(docs)
+  if(docs>=1)
+  {
+    res.status(200).json(docs)
+  }
+  else {
+    {
+      res.status(404).json({
+        message: "No Entries found"
+      })
+    }
+  }
+
 }).catch(err=>
 {
   res.status(500).json({error:err})
@@ -70,9 +81,16 @@ router.patch('/:productId',(req,res,next)=>
 
 router.delete('/:productId',(req,res,next)=>
 {
-  console.log(req);
-  res.status(200).json({
-    message :"delete particular productId"
+  const id = req.params.productId
+  console.log(id);
+  Product.deleteOne({_id :id}).exec().then(result =>
+  {
+    res.status(200).json(result)
+  }).catch(err=>
+  {
+    res.status(500).json({
+      error:err
+    })
   })
 })
 
