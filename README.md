@@ -10,4 +10,4 @@ App hosted in heroku - https://kk-test-restapi.herokuapp.com/
 
  Created server file and added route for order , product
  Added MongoDb and data stored in DB
- Create product , get particular product , get all product
+ Create product , get particular product , get all product , delete particular product
