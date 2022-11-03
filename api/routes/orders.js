@@ -39,19 +39,16 @@ router.get('/:orderId',(req,res,next)=>
 {
   const orderId = req.params.orderId
 
-  if(orderId == "special")
-  {
-    res.status(200).json({
-      message:"You've a special order memeber Welcome !!",
-      id:orderId
+  Order.findById({_id:orderId}).then(result=>{
+    res.status(200).json(result)
+
+  }).catch(err=>
+    {
+      res.status(500).json({
+        error:err
+      })
     })
-  }
-  else
-  {
-    res.status(200).json({
-      message:"handling praticular orderId"
-    })
-  }
+
 })
 
 router.delete('/:orderId',(req,res,next)=>
