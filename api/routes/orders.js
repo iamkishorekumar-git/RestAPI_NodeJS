@@ -54,12 +54,22 @@ router.get('/:orderId',(req,res,next)=>
   }
 })
 
-router.delete('/:productId',(req,res,next)=>
+router.delete('/:orderId',(req,res,next)=>
 {
-  console.log(req);
-  res.status(200).json({
-    message :"delete particular orderId"
-  })
+const id = req.params.orderId
+Order.deleteOne({_id:id})
+.then(result =>
+{
+  res.status(200).json(result)
+}).catch( err =>
+  {
+    console.log(err);
+    res.status(500).json({
+      error:err
+    })
+  }
+)
+
 })
 
 
