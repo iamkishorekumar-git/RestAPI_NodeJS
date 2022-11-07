@@ -10,7 +10,24 @@ router.get("/",(req,res,next)=>
 {
   if(docs)
   {
-    res.status(200).json(docs)
+    res.status(200).json({
+
+      count : docs.length,
+      products : docs.map(doc=>
+        {
+         return {
+          _id : doc._id,
+          name : doc.name,
+          price : docs.price,
+          request: {
+            type:"GET",
+            url :"https://localhost:8080/products" + doc._id 
+
+          }
+         } 
+
+        })
+    })
   }
   else {
     {
@@ -37,7 +54,7 @@ router.post("/",(req,res,next)=>
   {
     console.log(result);
     res.status(201).json({
-      message:'Handling POST request - products',
+      message:'Product Created',
       createdProduct : result
     })
   })
@@ -82,7 +99,7 @@ router.patch('/:productId',(req,res,next)=>
    updateOps[ops.propName] = ops.value
  }
 
- Product.update({_id:id},{$set: updateOps}).exec().then( result =>
+ Product.updateOne({_id:id},{$set: updateOps}).exec().then( result =>
  {
    res.status(200).json(result)
  }).catch(err=>
