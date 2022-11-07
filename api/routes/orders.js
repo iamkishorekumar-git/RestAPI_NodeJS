@@ -11,7 +11,9 @@ Order.find().then(docs=>
   res.status(200).json(docs)
 }).catch(err=>
 {
-  error: err
+  res.status(500).json({
+    error:err
+  })
 })
 })
 
