@@ -60,7 +60,9 @@ router.get('/:orderId', (req, res, next) => {
   const orderId = req.params.orderId
 
   Order.findById({ _id: orderId }).then(result => {
-    res.status(200).json(result)
+    res.status(200).json({
+      order:result
+    })
 
   }).catch(err => {
     res.status(500).json({
