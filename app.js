@@ -2,6 +2,7 @@ const express = require("express")
 app = express()
 const productRouters = require("./api/routes/product")
 const ordersRouters = require("./api/routes/orders")
+const userRouters = require("./api/routes/user")
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 //const bodyParser = require("body-parser")
@@ -34,6 +35,7 @@ app.use((req,res,next)=>
 
 app.use("/products",productRouters)
 app.use("/orders",ordersRouters)
+app.use("/user",userRouters)
 
 app.use((req,res,next)=>
 {
