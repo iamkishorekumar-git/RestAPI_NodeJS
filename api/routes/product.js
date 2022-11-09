@@ -1,10 +1,27 @@
 const express = require("express")
-
+const moment = require("moment")
 const router = express.Router()
 const Product = require("../models/product")
 const mongoose = require("mongoose")
 const multer = require("multer")
-const Upload = multer({dest:"uploads/"})
+
+
+const storage = multer.diskStorage({
+
+  destination : function(req,file,cb)
+  {
+    cb(null,"./uploads")
+  },
+
+  filename : function(req,file,cb)
+  {
+    cb(null,moment().format()+ file.originalname )
+    
+  }
+
+})
+
+const Upload = multer({storage:storage})
 
 router.get("/",(req,res,next)=>
 {
