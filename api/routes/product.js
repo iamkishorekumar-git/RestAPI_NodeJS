@@ -21,7 +21,11 @@ const storage = multer.diskStorage({
 
 })
 
-const Upload = multer({storage:storage})
+
+
+const Upload = multer({storage:storage,limits: {
+  fileSize: 1024*1024 * 2
+}})
 
 router.get("/",(req,res,next)=>
 {
