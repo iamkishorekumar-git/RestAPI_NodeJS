@@ -25,6 +25,7 @@ mongoose
 app.use((morgan("dev")))
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
+app.use("/uploads",express.static("uploads"))
 app.use((req,res,next)=>
 {
   res.header("Access-Control-Allow-Origin","*")

@@ -15,17 +15,33 @@ const storage = multer.diskStorage({
 
   filename : function(req,file,cb)
   {
+    console.log(file)
     cb(null,moment().format()+ file.originalname )
-    
   }
-
 })
 
+// file filter
 
 
-const Upload = multer({storage:storage,limits: {
-  fileSize: 1024*1024 * 2
-}})
+const fileFilter = (req,file,cb)=>
+{
+  //reject a file
+
+  if(file.mimetype ==="image/jpeg" || file.mimetype ==="image/png")
+  {
+    cb(null,true)
+  }
+  else{
+    cb(new Error("File Type not Supported, Only png,Jpeg are allowed to upload"),false)
+  }
+
+}
+
+const Upload = multer({
+  storage:storage,
+  limits: { fileSize: 1024*1024 * 2},
+  fileFilter:fileFilter
+})
 
 router.get("/",(req,res,next)=>
 {
@@ -41,7 +57,8 @@ router.get("/",(req,res,next)=>
          return {
           _id : doc._id,
           name : doc.name,
-          price : docs.price,
+          price : doc.price,
+          productURL : doc.path,
           request: {
             type:"GET",
             url :"https://localhost:8080/products" + doc._id 
@@ -72,7 +89,8 @@ router.post("/",Upload.single("productImage"),(req,res,next)=>
   const product = new Product({
     _id : new mongoose.Types.ObjectId(),
     name: req.body.name,
-    price:req.body.price
+    price:req.body.price,
+    productURL:req.file.path
   })
   product.save().then(result=>
   {
