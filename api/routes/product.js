@@ -58,7 +58,7 @@ router.get("/",(req,res,next)=>
           _id : doc._id,
           name : doc.name,
           price : doc.price,
-          productURL : doc.path,
+          productURL : doc.productURL,
           request: {
             type:"GET",
             url :"https://localhost:8080/products" + doc._id 
