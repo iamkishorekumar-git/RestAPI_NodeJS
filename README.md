@@ -12,4 +12,4 @@ App hosted in heroku - https://kk-test-restapi.herokuapp.com/
  Added MongoDb and data stored in DB
  Create product,get particular product,get all product,delete particular product
  Create Order,get particular order and get all order ,delete particular order
- Added Upload Image params in product
+ Added Upload Image params in product, updated config using multer
