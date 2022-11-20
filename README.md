@@ -8,8 +8,8 @@ App hosted in heroku - https://kk-test-restapi.herokuapp.com/
 
 ### Done Checklist
 
- <!-- Created server file and added route for order , product
+ Created server file and added route for order , product
  Added MongoDb and data stored in DB
  Create product,get particular product,get all product,delete particular product
  Create Order,get particular order and get all order ,delete particular order
- Added Upload Image params in product, updated config using multer -->
+ Added Upload Image params in product, updated config using multer

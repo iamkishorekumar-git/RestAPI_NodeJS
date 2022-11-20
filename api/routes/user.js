@@ -55,6 +55,34 @@ router.post('/signup', (req, res, next) => {
 })
 
 
+router.post("/login",(req,res,next)=>
+{
+    User.find(req.body.email).then(user =>
+        {
+            if(user.length<1)
+            {
+                res.status(404).json({
+                    message:"Mail doesn't exist"
+                })
+            }
+        }
+        
+
+
+
+
+    ).catch(err=>
+        {
+            console.log(err)
+            res.status(400).json(
+                {
+                    error:err
+                }
+            )
+        })
+
+})
+
 router.delete('/:userId',(req,res,next)=>
 {
     console.log(req)
