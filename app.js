@@ -8,12 +8,6 @@ const mongoose = require("mongoose")
 //const bodyParser = require("body-parser")
 
 const uri = "mongodb+srv://rest-api-shop:rest-api-shop@rest-api.6evwfqc.mongodb.net/?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
 
 mongoose
   .connect(process.env.URI || uri, {
