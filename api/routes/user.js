@@ -4,7 +4,8 @@ const router = express.Router()
 const User = require("../models/user")
 const mongoose = require("mongoose")
 const bcrypt = require('bcrypt');
-const { json } = require("body-parser");
+const jwt = require("jsonwebtoken")
+
 
 router.post('/signup', (req, res, next) => {
     User.find({ email: req.body.email }).then(result => {
@@ -57,7 +58,7 @@ router.post('/signup', (req, res, next) => {
 
 router.post("/login",(req,res,next)=>
 {
-    User.find(req.body.email).then(user =>
+    User.find({email : req.body.email}).then(user =>
         {
             if(user.length<1)
             {
@@ -65,9 +66,25 @@ router.post("/login",(req,res,next)=>
                     message:"Mail doesn't exist"
                 })
             }
+            bcrypt.compare(req.body.password,user[0].password,(err,result)=>
+            {
+                if(err) return(res.status(400).json({error:err}))
+                if(result) 
+                {
+                   const token =  jwt.sign({
+                        email : user[0].email,
+                        userId : user[0]._id
+                    },"jwtKey",{
+                        expiresIn : "1h"
+                    })
+                    
+                    return res.status(200).json({
+                        message: "auth succes",
+                        token : token
+                    })
+                }
+            })
         }
-        
-
     ).catch(err=>
         {
             console.log(err)
